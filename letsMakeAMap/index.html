@@ -4,12 +4,23 @@
 	<head>
 		<meta charset="utf-8">
 		<style>
-		
+
 		.subunit.SCT { fill: #ddc; }
 		.subunit.WLS { fill: #cdd; }
 		.subunit.NIR { fill: #cdc; }
 		.subunit.ENG { fill: #dcd; }
 		.subunit.IRL { display: none; }
+
+		.subunit-boundary {
+			  fill: none;
+			  stroke: #777;
+			  stroke-dasharray: 2,2;
+			  stroke-linejoin: round;
+		}
+
+		.subunit-boundary.IRL {
+		  stroke: #aaa;
+		}
 
 		</style>
 	</head>
@@ -49,6 +60,15 @@
 			    .attr("class", function(d) { return "subunit " + d.id; })
 			    .attr("d", path);
 
+			svg.append("path")
+			    .datum(topojson.mesh(uk, uk.objects.subunits, function(a, b) { return a !== b && a.id !== "IRL"; }))
+			    .attr("d", path)
+			    .attr("class", "subunit-boundary");
+
+			svg.append("path")
+			    .datum(topojson.mesh(uk, uk.objects.subunits, function(a, b) { return a === b && a.id === "IRL"; }))
+			    .attr("d", path)
+			    .attr("class", "subunit-boundary IRL");
 
 
 
