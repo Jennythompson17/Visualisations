@@ -16,6 +16,8 @@ Template Name: D3 Pages
 
 				<?php get_template_part( 'content', 'page' ); ?>
 
+				<div id="graph"> </div>
+
 				<?php
 					do_action( 'spacious_before_comments_template' );
 					// If comments are open or we have at least one comment, load up the comment template
@@ -25,8 +27,6 @@ Template Name: D3 Pages
 				?>
 
 			<?php endwhile; ?>
-
-			<div id="graph"> </div>
 
 
 		</div><!-- #content -->
