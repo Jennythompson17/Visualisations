@@ -3,8 +3,7 @@
 Template Name: D3 Pages
 */
 ?>
-
-wp_enqueue_script(‘d3-js’, ‘//d3js.org/d3.v3.min.js’);
+<?php wp_enqueue_script(‘d3-js’); ?>
 
 <?php get_header(); ?>
 
@@ -17,14 +16,6 @@ wp_enqueue_script(‘d3-js’, ‘//d3js.org/d3.v3.min.js’);
 				<?php get_template_part( 'content', 'page' ); ?>
 
 				<div id="graph"> </div>
-
-				<?php
-					do_action( 'spacious_before_comments_template' );
-					// If comments are open or we have at least one comment, load up the comment template
-					if ( comments_open() || '0' != get_comments_number() )
-						comments_template();					
-	      		do_action ( 'spacious_after_comments_template' );
-				?>
 
 			<?php endwhile; ?>
 

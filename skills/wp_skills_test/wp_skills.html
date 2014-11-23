@@ -18,43 +18,24 @@
 	<script>
 
 	var data1 = [ 
-		{data:bP.partData(techData1,2), id:'Journey_1', header:["Project Categories","Tools & Languages", ""]}
+		{data:bP.partData(techData1,2), id:'Journey_1', header:["Project Categories","Tools", ""]}
 		];
 
-
-	var data2 = [ 
-		{data:bP.partData(comsData2,2), id:'Journey_2', header:["Project","Skills", "Communication Skills"]}
-		];
 
 
 	$(document).ready( function() {
 		var svg = d3.select("#graph")
-			.append("svg").attr('width',width).attr('height',(height+margin.b+margin.t)).attr('id',"dataGoesHere")
+			.append("svg")
+			.attr('width',$("#graph").width())
+			.attr('height',($("#graph").height()+margin.b+margin.t))
+			.attr('id',"dataGoesHere")
 			.append("g").attr("transform","translate("+ margin.l+","+margin.t+")");
 
 		bP.draw(data1, svg);
 
 	});
 
-	//re-draw on change
 
-	$(document).on('change', '#dataChoice', function(event){
-
-			$('#dataGoesHere').remove();
-
-			var svg = d3.select("#graph")
-			.append("svg").attr('width',width).attr('height',(height+margin.b+margin.t)).attr('id',"dataGoesHere")
-			.append("g").attr("transform","translate("+ margin.l+","+margin.t+")");
-
-			var selection = $('#dataChoice :selected').val();
-
-				if (selection == "techData1"){
-					bP.draw(data1, svg);
-					
-				} else if (selection == "comsData2"){
-					bP.draw(data2, svg);
-				};
-			});
 
 	</script>
 

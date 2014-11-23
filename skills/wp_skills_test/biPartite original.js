@@ -77,10 +77,11 @@ var comsData2=[
 ['Analysing Things','Google Prediction API',4,4]
 ];
 
-var width = 2500, height = 610, margin ={b:0, t:40, l:200, r:0};
-//var margin ={b:0, t:40, l:200, r:50};
+var width = 2500, height = 610, margin ={b:0, t:40, l:200, r:50};
 
-// b = width of bars, bb = width of edges, c variables = position of text label, percentage and value
+
+
+
 // b = width of bars, bb = width of edges, c variables = position of text label, percentage and value
 
 
