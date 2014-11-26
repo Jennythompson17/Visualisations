@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+	<head>
+		<title>Jennifer Thompson's CV</title>
+	
+		<style>
+			
+		</style>
+
+			<script src="http://d3js.org/d3.v3.min.js"></script> 
+			<script src="biPartite.js"></script>
+			<script src="jquery.js"></script>
+			<link rel="stylesheet" type="text/css" href="beautiful.css">
+
+
+	<script>
+
+	var data1 = [ 
+		{data:bP.partData(techData1,2), id:'Journey_1', header:["Project Categories","Tools", ""]}
+		];
+
+
+
+	$(document).ready( function() {
+		var svg = d3.select("#graph")
+			.append("svg")
+			.attr('width',$("#graph").width())
+			.attr('height',($("#graph").height()+margin.b+margin.t))
+			.attr('id',"dataGoesHere")
+			.append("g").attr("transform","translate("+ margin.l+","+margin.t+")");
+
+		bP.draw(data1, svg);
+
+	});
+
+
+
+	</script>
+
+</head>
+
+<body>
+	<h1>Jennifer Thompson's Skillset<h1>
+		<p> As the Director of Analytics, I find technical solutions to business problems. The visualisation below shows the types of projects I have experience with on the left and the tools and languages that I have applied to build solutions on the right. </p>
+
+	<aside>
+	   Hover over Stages or Topics to see relationships
+	</aside>
+	<!--<form id="dataChoice" action="">
+		<select name="dataVersion">
+		<option value="techData1">Technical Skills</option>
+		<option value="comsData2">Communication Skills</option>
+		</select>
+	</form>-->
+	<div id= "graph"></div>
+
+	<div id= "email">
+	 <a href="mailto:jennythompson17@gmail.com?Subject=Hello" target="_top"> Get in touch</a>
+
+	</div>
+</body>
+</html>

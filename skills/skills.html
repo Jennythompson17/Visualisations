@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+	<head>
+	<title>Jennifer Thompson's CV</title>
+	<style>
+
+	select {
+		font-family: "Arial";
+		font-size: 20px;
+	}
+
+	h1 {
+		text-align: left;
+	}
+
+	p {
+		font-family: "Arial";
+		font-size: 18px;
+		font-style: italic;
+		width: ;
+
+	}
+
+	#graph {
+		margin-top:70px;
+		margin-bottom:50px;
+		margin-left: 150;
+		margin-right: 0;
+
+	}
+
+	#email {
+		font-family: "Arial";
+		font-size: 14px;
+		text-align: left;
+	}
+
+
+	body {
+		padding:100px;
+		padding-top: 0px;
+		margin-left: 50px;
+		font-family: "Arial";
+		font-size:16px;
+	}
+
+	aside {
+		font-size:14px;
+	}
+
+	form {
+		font-size:20px;
+	}
+
+
+	svg text{
+		font-size:14px;
+	}
+
+	rect{
+		shape-rendering:crispEdges;
+	}
+	</style>
+
+	<script src="http://d3js.org/d3.v3.min.js"></script> 
+	<script src="biPartite.js"></script>
+	<script src="jquery.js"></script>
+
+
+<script>
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56839004-1', 'auto');
+  ga('send', 'pageview');
+
+
+var techData1=[
+
+
+['Building Things','JavaScript',16,16],
+['Building Things','jQuery',14,14],
+['Building Things','D3.js',12,12],
+['Building Things','AJAX',8,8],
+['Building Things','HTML/CSS',18,18],
+['Building Things','SQL',12,12],
+['Building Things','Python',6,6],
+['Building Things','Git (Version Control)',12,12],
+['Visualising Things', 'Tableau',33,15],
+['Visualising Things', 'D3.js',34,35],
+['Visualising Things', 'Excel',33,33],
+['Analysing Things','JavaScript',10,10],
+['Analysing Things','SQL',8,8],
+['Analysing Things','D3.js',15,15],
+['Analysing Things','Python',7,7],
+['Analysing Things','R',8,8],
+['Analysing Things','Excel',47,47],
+['Automating Things','JavaScript',25,25],
+['Automating Things','SQL',20,20],
+['Automating Things','Google Adwords API',25,25],
+['Automating Things','Google Analytics API',9,9],
+['Automating Things','Twitter API',9,9],
+['Automating Things','Facebook API',9,9],
+['Data Mining','Google Adwords API',18,18],
+['Data Mining','Google Analytics API',14,14],
+['Data Mining','Twitter API',9,9],
+['Data Mining','Facebook API',9,9],
+['Data Mining','JavaScript',9,9],
+['Data Mining','XPATH',8,8],
+['Data Mining','Python',4,4],
+['Data Mining','SQL',5,5],
+['Data Mining','R',5,5],
+['Data Mining','Excel',19,19],
+['Analysing Things','Google Prediction API',4,4]
+];
+
+var comsData2=[
+
+['Building Things','JavaScript',10,10],
+['Building Things','jQuery',10,10],
+['Building Things','D3.js',6,6],
+['Building Things','AJAX',10,10],
+['Building Things','HTML/CSS',8,8],
+['Building Things','SQL',5,5],
+['Building Things','Python',4,4],
+['Building Things','R',4,4],
+['Building Things','Git (Version Control)',6,6],
+['Visualising Things', 'Tableau',4,4],
+['Visualising Things', 'D3.js',10,10],
+['Visualising Things', 'Excel',7,7],
+['Analysing Things','JavaScript',4,4],
+['Analysing Things','SQL',6,6],
+['Analysing Things','Python',4,4],
+['Analysing Things','D3.js',4,4],
+['Analysing Things','R',6,6],
+['Analysing Things','Git (Version Control)',6,6],
+['Analysing Things','Excel',6,6],
+['Automating Things','JavaScript',4,4],
+['Automating Things','SQL',10,10],
+['Automating Things','Google Adwords API',6,6],
+['Automating Things','Git (Version Control)',6,6],
+['Data Mining','Google Adwords API',10,10],
+['Data Mining','Google Analytics API',10,10],
+['Data Mining','Twitter API',8,8],
+['Data Mining','Facebook API',5,5],
+['Data Mining','JavaScript',10,10],
+['Data Mining','HTML/CSS',8,8],
+['Data Mining','Python',4,4],
+['Data Mining','AJAX',4,4],
+['Data Mining','Git (Version Control)',6,6],
+['Data Mining','R',6,6],
+['Data Mining','Excel',6,6],
+['Analysing Things','Google Prediction API',4,4]
+];
+var width = 2500, height = 610, margin ={b:0, t:40, l:200, r:50};
+
+var data1 = [ 
+	{data:bP.partData(techData1,2), id:'Journey_1', header:["Project Categories","Tools & Languages", ""]}
+	];
+
+
+var data2 = [ 
+	{data:bP.partData(comsData2,2), id:'Journey_2', header:["Project","Skills", "Communication Skills"]}
+	];
+
+
+$(document).ready( function() {
+	var svg = d3.select("#graph")
+		.append("svg").attr('width',width).attr('height',(height+margin.b+margin.t)).attr('id',"dataGoesHere")
+		.append("g").attr("transform","translate("+ margin.l+","+margin.t+")");
+
+	bP.draw(data1, svg);
+
+});
+
+//re-draw on change
+
+$(document).on('change', '#dataChoice', function(event){
+
+		$('#dataGoesHere').remove();
+
+		var svg = d3.select("#graph")
+		.append("svg").attr('width',width).attr('height',(height+margin.b+margin.t)).attr('id',"dataGoesHere")
+		.append("g").attr("transform","translate("+ margin.l+","+margin.t+")");
+
+		var selection = $('#dataChoice :selected').val();
+
+			if (selection == "techData1"){
+				bP.draw(data1, svg);
+				
+			} else if (selection == "comsData2"){
+				bP.draw(data2, svg);
+			};
+		});
+
+</script>
+
+</head>
+
+<body>
+	<h1>Jennifer Thompson's Skillset<h1>
+		<p> As the Director of Analytics, I find technical solutions to business problems. The visualisation below shows the types of projects I have experience with on the left and the tools and languages that I have applied to build solutions on the right. </p>
+
+	<aside>
+	   Hover over Stages or Topics to see relationships
+	</aside>
+	<!--<form id="dataChoice" action="">
+		<select name="dataVersion">
+		<option value="techData1">Technical Skills</option>
+		<option value="comsData2">Communication Skills</option>
+		</select>
+	</form>-->
+	<div id= "graph"></div>
+
+	<div id= "email">
+	 <a href="mailto:jennythompson17@gmail.com?Subject=Hello" target="_top"> Get in touch</a>
+
+	</div>
+</body>
+</html>
